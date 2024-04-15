@@ -1,52 +1,103 @@
-# Prerequisites
-*.d
+# Standard .gitignore für C# und Webentwicklung
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
+## .NET Core / .NET
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+*.userprefs
 *.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
 *.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
 *.pdb
+*.cache
+*.csproj.user
+*.vbproj.user
+.vs/
+.vscode/
+[Oo]bj/
+[Bb]in/
+*.nupkg
+*.snk
+*.ilk
+*.log
+*.vsix
+*.testsettings
+*.vssscc
+*.[Cc]ache
+*.dbmdl
+*.jfm
+*.tlog
+*.vsmdcp
+*.opendb
+*.unsuccessfulbuild
+*.v11.suo
+*.v12.suo
+*.v14.suo
+*.psess
+*.vsp
+*.vspx
+*.sap
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+## ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+## Visual Studio Code
+.history/
+.settings/
+tasks.json
+launch.json
+
+## Visual Studio
+*.vsp
+*.vspx
+*.userprefs
+
+## Rider
+.idea/
+*.sln.iml
+
+## User-specific files
+*.rsuser
+*.user
+*.userosscache
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## NuGet
+packages/
+*.nupkg
+*.nuspec
+
+## NPM
+node_modules/
+npm-debug.log
+package-lock.json
+
+## Bower
+bower_components/
+.bowerrc
+bower.json
+
+## Bundle
+*.bundle
+
+## Misc
+.DS_Store
+Thumbs.db
+*.sublime*
+*.swp
+*~.nupkg
