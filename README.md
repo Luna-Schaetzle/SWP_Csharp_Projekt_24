@@ -6,6 +6,8 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/Luna-Schaetzle/SWP_Csharp_Projekt_24)
 ![GitHub issues](https://img.shields.io/github/issues/Luna-Schaetzle/SWP_Csharp_Projekt_24)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Luna-Schaetzle/SWP_Csharp_Projekt_24)
+![GitHub repo size](https://img.shields.io/github/repo-size/Luna-Schaetzle/SWP_Csharp_Projekt_24)
+![GitHub push](https://img.shields.io/github/commit-activity/m/Luna-Schaetzle/SWP_Csharp_Projekt_24)
 
 ## Inhaltsverzeichnis
 
