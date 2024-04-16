@@ -11,10 +11,10 @@ namespace DnD_Archive.Models
       
 
         //Ctor's
-    
+
         //ToString()
 
-
+    
 
     }
 }
