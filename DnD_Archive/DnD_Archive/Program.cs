@@ -1,3 +1,5 @@
+using DnD_Archive.Models.DB;
+
 namespace DnD_Archive
 {
     public class Program
@@ -8,6 +10,8 @@ namespace DnD_Archive
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<DbManager>(ServiceLifetime.Singleton);
 
             var app = builder.Build();
 
