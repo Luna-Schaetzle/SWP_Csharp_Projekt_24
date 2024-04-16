@@ -17,9 +17,10 @@
     - [Geplante Features](#geplante-features)
     - [Umgesetzte Features](#umgesetzte-features)
   - [Technologiestack](#technologiestack)
-  - [Erste Schritte](#erste-schritte)
-    - [Voraussetzungen](#voraussetzungen)
-  - [Beitrag leisten](#beitrag-leisten)
+  - [Verlauf des Projektes](#verlauf-des-projektes)
+    - [Voraussetzungen damit das Projekt Realisiert werden kann](#voraussetzungen-damit-das-projekt-realisiert-werden-kann)
+    - [Projekt Initialisieren](#projekt-initialisieren)
+  - [Beitrag leistende](#beitrag-leistende)
   - [Lizenz](#lizenz)
 
 
@@ -48,20 +49,24 @@ Diese Website dient der Verwaltung von Dungeons & Dragons Charakterbögen und bi
 - **Datenbank**: MySQL
 - **Frontend**: (Hier könnten Sie die Technologien einfügen, die Sie für das Frontend verwenden, z.B. Blazor, React.js, Angular etc.)
 
-## Erste Schritte
+## Verlauf des Projektes
 
-Diese Anleitung hilft Ihnen dabei, eine lokale Kopie des Projekts einzurichten und zum Laufen zu bringen.
+### Voraussetzungen damit das Projekt Realisiert werden kann
 
-### Voraussetzungen
-
-Stellen Sie sicher, dass Sie die folgenden Tools installiert haben:
+Sicherstellung, dass die folgenden Tools installiert sind:
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 - [MySQL Server](https://dev.mysql.com/downloads/mysql/)
-- Ein geeignetes IDE wie [Visual Studio](https://visualstudio.microsoft.com/vs/) oder [VS Code](https://code.visualstudio.com/)
+- Ein geeignetes IDE wie [Visual Studio](https://visualstudio.microsoft.com/vs/) und/oder [VS Code](https://code.visualstudio.com/)
 
-## Beitrag leisten
+### Projekt Initialisieren 
 
-Beiträge sind willkommen und werden geschätzt. Falls Sie zum Projekt beitragen möchten, erstellen Sie bitte einen Fork des Repositories und senden Sie einen Pull Request.
+## Beitrag leistende
+
+Luna Schätzle
+https://github.com/Luna-Schaetzle
+
+Florian Prandstetter
+https://github.com/jamati123
 
 ## Lizenz
 
