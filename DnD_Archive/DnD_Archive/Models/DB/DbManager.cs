@@ -17,7 +17,7 @@ namespace DnD_Archive.Models.DB
             //      IP des MySQL-Servers
             //      Datenbankname ... selber angeben
             //      User/PWD ... die MySQL-Daten des Users mit dem sich der ORM bei MySQL anmelden soll
-            string connectionString = "Server=localhost;database=DND_Archive;user=root;password=zwiebel55";
+            string connectionString = "Server=localhost;database=DND_Archive;user=root;password=flo2rian";
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
     }
