@@ -32,11 +32,12 @@ Diese Website dient der Verwaltung von Dungeons & Dragons Charakterbögen und bi
 ### Geplante Features
 
 - **Charaktererstellung und -verwaltung**: Benutzer können ihre D&D Charaktere erstellen, bearbeiten und speichern.
+  - **Zauberbuch**: Eine digitale Sammlung von Zaubern und Fähigkeiten, die Benutzer ihrem Charakter hinzufügen können.
+  - **Inventarverwaltung**: Hilft Spielern, den Überblick über Ausrüstung und Gegenstände ihres Charakters zu behalten.
 - **Link zu D&D Wikis**: Direkte Verlinkungen zu externen D&D Wiki-Seiten für detaillierte Informationen über Klassen, Rassen und Ausrüstungen.
 - **Charaktererstellungsassistent**: Ein interaktives Tool, das Spielern hilft, Schritt für Schritt neue Charaktere zu erstellen.
 - **Battle Koordinator**: Ein Tool zur Verwaltung und Durchführung von Kampfszenarien, inklusive Initiative Tracking und Gesundheitsmanagement.
-- **Zauberbuch**: Eine digitale Sammlung von Zaubern und Fähigkeiten, die Benutzer ihrem Charakter hinzufügen können.
-- **Inventarverwaltung**: Hilft Spielern, den Überblick über Ausrüstung und Gegenstände ihres Charakters zu behalten.
+
 - **Multi-User Zugang**: Unterstützung für mehrere Benutzer mit individuellen Zugängen und Sichtbarkeiten.
 
 ### Umgesetzte Features
