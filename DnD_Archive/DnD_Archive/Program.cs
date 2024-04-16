@@ -30,7 +30,7 @@ namespace DnD_Archive
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            // Führt die app aus!
+            // Fuehrt die app aus!
             app.Run();
         }
     }
