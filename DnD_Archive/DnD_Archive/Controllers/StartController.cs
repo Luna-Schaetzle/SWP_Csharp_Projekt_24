@@ -8,5 +8,15 @@ namespace DnD_Archive.Controllers
         {
             return View();
         }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Registrieren()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,43 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #007BFF;
+    margin-top: 5px; /* Reduzierter oberer Abstand */
+    margin-bottom: 20px; /* Optional: Anpassen nach Bedarf */
+}
+
+
+zero-md {
+    display: block;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    margin-top: 5px; /* Optional: Anpassen nach Bedarf */
+    padding-top: 5px; /* Optional: Anpassen nach Bedarf */
+}
+
+zero-md::part(marked-output) { /* Stilisierung des Inhaltsbereichs der Markdown-Datei */
+    padding: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #007BFF;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

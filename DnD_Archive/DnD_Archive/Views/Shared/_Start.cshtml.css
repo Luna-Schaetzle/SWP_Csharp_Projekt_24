@@ -1,0 +1,26 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #faf8f9;
+    color: #212529;
+}
+
+.navbar {
+    background-color: #ffffff;
+}
+
+.navbar-brand, .nav-link {
+    color: #007bff !important;
+}
+
+.nav-link {
+    margin-right: 10px;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    color: #6c757d;
+}
+
+.footer a {
+    color: #007bff;
+}
