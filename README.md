@@ -16,6 +16,7 @@
   - [Über das Projekt](#über-das-projekt)
     - [Geplante Features](#geplante-features)
     - [Umgesetzte Features](#umgesetzte-features)
+  - [TODOs](#todos)
   - [Technologiestack](#technologiestack)
   - [Verlauf des Projektes](#verlauf-des-projektes)
     - [Voraussetzungen damit das Projekt Realisiert werden kann](#voraussetzungen-damit-das-projekt-realisiert-werden-kann)
@@ -43,6 +44,10 @@ Diese Website dient der Verwaltung von Dungeons & Dragons Charakterbögen und bi
 ### Umgesetzte Features
 
 - None
+
+## TODOs
+
+[TODOS.md](TODO.md)
 
 ## Technologiestack
 
