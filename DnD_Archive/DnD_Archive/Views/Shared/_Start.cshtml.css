@@ -8,6 +8,13 @@ body {
     background-color: #ffffff;
 }
 
+h1 {
+    text-align: center;
+    color: #007BFF;
+    margin-top: 5px; /* Reduzierter oberer Abstand */
+    margin-bottom: 20px; /* Optional: Anpassen nach Bedarf */
+}
+
 .navbar-brand, .nav-link {
     color: #007bff !important;
 }

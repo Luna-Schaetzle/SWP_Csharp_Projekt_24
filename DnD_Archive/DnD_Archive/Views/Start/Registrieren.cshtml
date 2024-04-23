@@ -1,7 +1,18 @@
 ﻿
 @{
+    Layout = "~/Views/Shared/_Start.cshtml";
     ViewData["Title"] = "Registrieren";
 }
 
-<h1>Registrieren</h1>
+
+<form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" />
+
+    <button type="submit">Register</button>
+</form>
+
 

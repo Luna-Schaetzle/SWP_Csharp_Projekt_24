@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm mb-4">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm mb-4 fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="@Url.Action("Index", "Start")">DnD Archive</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +30,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" style="padding-top: 80px;"> <!-- Hinzugefügter Abstand -->
         <main role="main" class="py-4">
             @RenderBody()
         </main>
@@ -46,3 +46,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+    
