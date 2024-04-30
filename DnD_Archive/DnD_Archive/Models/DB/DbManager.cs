@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DnD_Archive.Models.DB
 {
-    public class DbManager : Microsoft.EntityFrameworkCore.DbContext
+    public class DbManager : DbContext
     {
 
         public DbSet<User> Users { get; set; }
@@ -17,7 +17,7 @@ namespace DnD_Archive.Models.DB
             //      IP des MySQL-Servers
             //      Datenbankname ... selber angeben
             //      User/PWD ... die MySQL-Daten des Users mit dem sich der ORM bei MySQL anmelden soll
-            string connectionString = "Server=localhost;database=DND_Archive;user=root;password=flo2rian";
+            string connectionString = "Server=localhost;database=DND_Archive;user=root;password=zwiebel55";
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
     }
