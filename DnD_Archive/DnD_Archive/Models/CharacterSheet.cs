@@ -12,11 +12,12 @@ namespace DnD_Archive.Models
         public User User { get; set; }
         public string CharName { get; set; }
 
+        /*
         public CharInfo CharInfo { get; set; }
         public CharStat CharStat { get; set; }
         public Inventory Inventory {  get; set; }      
-        
-        public Spells Spells { get; set; }
+        */
+
 
         //Ctor's
 
