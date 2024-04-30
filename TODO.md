@@ -6,3 +6,4 @@
 - [ ] Die Home seite mit den Daten füllen
 - [ ] Die User Tabellen erstellen 
 - [ ] User Tabellen mit Testdaten füllen
+- [ ] Registrieren Fertig machen !! Fehlerbeheben

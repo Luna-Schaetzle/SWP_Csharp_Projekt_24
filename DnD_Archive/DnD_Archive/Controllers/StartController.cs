@@ -32,6 +32,7 @@ namespace DnD_Archive.Controllers
         [HttpPost]
         public IActionResult Registrieren(User user)
         {
+            //TODO: Feheler Beheben mit REgistrierung 
             //Schauen ob alles richtig ist 
             if (user.UserName != null)
             {
