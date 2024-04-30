@@ -7,12 +7,59 @@
 
 
 <form asp-controller="StartController" asp-action="Registrieren" method="post">
-    <table class="Table">
+    <table class="form-table">
         <thead>
             <tr>
-                <th colspan="2" >Registrieren</th>
+                <th colspan="3">Registrieren</th>
             </tr>
         </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Benutzername: <span style="color:red">*</span>
+                </td>
+                <td>
+                    <input type="text" asp-for="UserName" />
+                </td>
+                <td>
+                    <span asp-validation-for="UserName"></span>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    E-Mail: <span style="color:red">*</span>
+                </td>
+
+                <td>
+                    <input type="email" asp-for="email" />
+                </td>
+                <td>
+                    <span asp-validation-for="email"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Passwort: <span style="color:red">*</span>
+                </td>
+                <td>
+                    <input type="password" asp-for="password" />
+                </td>
+                <td>
+                    <span asp-validation-for="password"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Register" />
+                    <input type="reset" value="abbrechen">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th><span style="color:red">*</span> sind Pflichtfelder</th>
+            </tr>
+        </tfoot>
     </table>
 </form>
-

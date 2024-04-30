@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DnD_Archive.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DnD_Archive.Controllers
 {
@@ -14,7 +15,14 @@ namespace DnD_Archive.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Registrieren()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Registrieren(User user)
         {
             return View();
         }
