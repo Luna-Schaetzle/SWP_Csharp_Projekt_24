@@ -2,6 +2,7 @@
 {
     public class Spells
     {
+
         public int SpellsId { get; set; }
         public CharacterSheet CharacterSheet { get; set; }
 
