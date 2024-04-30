@@ -8,8 +8,15 @@ namespace DnD_Archive.Models.DB
     {
 
         public DbSet<User> Users { get; set; }
+        public DbSet<CharacterSheet> CharacterSheets { get; set; }
+        public DbSet<CharInfo> charInfos { get; set; }
+        public DbSet<CharStat> charStats { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Spells> SpellList { get; set; }
 
-     
+
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // für den Pomelo-MySQL-Treiber
