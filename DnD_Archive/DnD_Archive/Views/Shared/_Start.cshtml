@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - DnD_Archive</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/dnd_archive_styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/start.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/dnd_archive_styles.css" asp-append-version="true" />
+    
 </head>
 <body>
     <header>
@@ -35,9 +35,9 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="footer bg-light text-center text-muted py-3 mt-4">
+    <footer class="footer bg-light text-center text-muted py-3 mt-4 fixed-bottom">
         <div class="container">
-            &copy; 2024 - DnD_Archive - <a href="@Url.Action("Privacy", "Home")">Privacy Policy</a>
+            &copy; 2024 - DnD_Archive - <a href="@Url.Action("Privacy", "Start")">Privacy Policy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

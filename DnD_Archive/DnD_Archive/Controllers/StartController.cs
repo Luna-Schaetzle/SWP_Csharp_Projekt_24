@@ -18,5 +18,10 @@ namespace DnD_Archive.Controllers
         {
             return View();
         }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
     }
 }

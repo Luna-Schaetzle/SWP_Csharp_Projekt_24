@@ -1,18 +1,14 @@
-﻿
+﻿@model DnD_Archive.Models.User
+
 @{
     Layout = "~/Views/Shared/_Start.cshtml";
     ViewData["Title"] = "Registrieren";
 }
 
 
-<form>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" />
+<form asp-controller="StartController" asp-action="Registrieren" method="post">
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" />
 
-    <button type="submit">Register</button>
+
 </form>
-
 
