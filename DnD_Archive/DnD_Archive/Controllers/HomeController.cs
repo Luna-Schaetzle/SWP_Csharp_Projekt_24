@@ -23,6 +23,21 @@ namespace DnD_Archive.Controllers
             return View();
         }
 
+        public IActionResult CreateSheet()
+        {
+            return View();
+        }
+
+        public IActionResult DeleteSheet()
+        {
+            return View();
+        }
+
+        public IActionResult OpenSheet()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -12,6 +12,8 @@ namespace DnD_Archive.Models
         public User User { get; set; }
         public string CharName { get; set; }
 
+        public string dataPdf { get; set; }
+
         /*
         public CharInfo CharInfo { get; set; }
         public CharStat CharStat { get; set; }
