@@ -45,7 +45,7 @@ namespace DnD_Archive.Controllers
             }
 
             //Schauen das der UserName 3 Zeichen hat
-            if (UserName.Length < 3)
+            if (UserName?.Length < 3)
             {
                 ModelState.AddModelError("UserName", "Der Benutzername ist mindestens 3 Zeichen lang");
             }
