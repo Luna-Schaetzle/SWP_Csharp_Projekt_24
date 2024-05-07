@@ -1,6 +1,8 @@
 ﻿using DnD_Archive.Models;
 using Microsoft.AspNetCore.Mvc;
 using DnD_Archive.Models.DB;
+using System.Web.Helpers;
+
 
 namespace DnD_Archive.Controllers
 {
@@ -18,10 +20,88 @@ namespace DnD_Archive.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Login(String UserName, String password)
+        {
+            //UserName Trimen Falls nicht null
+            if (UserName != null)
+            {
+                UserName = UserName.Trim();
+            }
+            //Passwort & UserName schauen ob es null ist
+            if (password == null)
+            {
+                ModelState.AddModelError("password", "Das Passwort darf nicht leer sein");
+            }
+            if (UserName == null)
+            {
+                ModelState.AddModelError("UserName", "Der Benutzername darf nicht leer sein");
+            }
+
+            //Schauen das der UserName 3 Zeichen hat
+            if (UserName.Length < 3)
+            {
+                ModelState.AddModelError("UserName", "Der Benutzername ist mindestens 3 Zeichen lang");
+            }
+        
+
+            return Login(new User()
+            {
+                UserName = UserName,
+                password = password
+            });
+        }
+
+        public IActionResult Login(User user)
+        {
+        
+        
+            //Die Daten aus der Datenbank holen
+            var dbUser = _dbManager.Users.FirstOrDefault(u => u.UserName == user.UserName);
+            //Wenn der User nicht existiert
+            if (dbUser == null)
+            {
+                ModelState.AddModelError("UserName", "Der Benutzername existiert nicht");
+            }
+            //Überprüfen ob das Passwort stimmt
+            else if (!Crypto.VerifyHashedPassword(dbUser.password, user.password))
+            {
+                ModelState.AddModelError("password", "Das Passwort ist falsch");
+            }
+
+            //Wenn es keine Fehler gibt
+            if (ModelState.IsValid)
+            {
+                //Session erstellen und die Parameter speichern
+                HttpContext.Session.SetString("UserName", dbUser.UserName);
+                HttpContext.Session.SetInt32("UserID", dbUser.UserID);
+                HttpContext.Session.SetString("email", dbUser.email);
+                //TODO: Weiterleitung zur Home-Seite
+                return View("Message", new Message()
+                {
+                    Title = "Login",
+                    MessageText = "Sie haben sich erfolgreich eingeloggt!"
+                });
+            }
+            else
+            {
+                return View("Message", new Message()
+                {
+                    Title = "Login",
+                    MessageText = "Es ist ein Fehler aufgetreten!",
+                    Solution = "Bitte Probieren Sie es erneut!"
+                });
+            }
+
+        }
+
+
 
         [HttpGet]
         public IActionResult Registrieren()
@@ -30,10 +110,20 @@ namespace DnD_Archive.Controllers
         }
 
         [HttpPost]
+        public IActionResult Registrieren(String UserName, String email, String password)
+        {
+            var hashedPassword = Crypto.HashPassword(password);
+            User user = new User()
+            {
+                UserName = UserName,
+                email = email,
+                password = hashedPassword
+            };
+            return Registrieren(user);
+        }
+
         public IActionResult Registrieren(User user)
         {
-            //TODO: Feheler Beheben mit REgistrierung 
-            //Schauen ob alles richtig ist 
             if (user.UserName != null)
             {
                 user.UserName = user.UserName.Trim();
@@ -60,6 +150,9 @@ namespace DnD_Archive.Controllers
             }
             if (ModelState.IsValid)
             {
+                //TODO: Überprüfen ob der User schon existiert
+                //TODO: Überprüfen ob die Email schon existiert
+                //TODO: weiterleitung zur Home-Seite
                 _dbManager.Users.Add(user);
                 _dbManager.SaveChanges();
                 return View("Message", new Message()

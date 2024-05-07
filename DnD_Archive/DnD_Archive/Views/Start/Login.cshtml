@@ -1,10 +1,55 @@
-﻿
+﻿@model DnD_Archive.Models.User
+
 @{
     Layout = "~/Views/Shared/_Start.cshtml";
     ViewData["Title"] = "Login";
 }
 
-<h1>Login</h1>
+
+<form asp-controller="Start" asp-action="Login" method="post">
+    <table class="form-table">
+        <thead>
+            <tr>
+                <th colspan="3">Login</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Benutzername: 
+                </td>
+                <td>
+                    <input type="text" asp-for="UserName" />
+                </td>
+                <td>
+                    <span asp-validation-for="UserName"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Passwort:
+                </td>
+                <td>
+                    <input type="password" asp-for="password" />
+                </td>
+                <td>
+                    <span asp-validation-for="password"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Login" />
+                    <input type="reset" value="abbrechen">
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th><span style="color:red">*</span> sind Pflichtfelder</th>
+            </tr>
+        </tfoot>
+    </table>
+</form>
 
 
 

@@ -1,0 +1,23 @@
+@model DnD_Archive.Models.Message
+
+@{
+    Layout = "~/Views/Shared/_Start.cshtml";
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">@Model.Title</h4>
+                <p>@Model.MessageText</p>
+                @if (!string.IsNullOrEmpty(Model.Solution))
+                {
+                    <hr>
+                    <h5 class="alert-heading">Mögliche Lösung:</h5>
+                    <p>@Model.Solution</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
