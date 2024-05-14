@@ -5,7 +5,6 @@
     ViewData["Title"] = "Registrieren";
 }
 
-
 <form asp-controller="Start" asp-action="Registrieren" method="post">
     <table class="form-table">
         <thead>
@@ -43,7 +42,8 @@
                     Passwort: <span style="color:red">*</span>
                 </td>
                 <td>
-                    <input type="password" asp-for="password" />
+                    <input type="password" asp-for="password" id="password" />
+                    <div id="password-strength" style="margin-top: 5px; color: green;"></div>
                 </td>
                 <td>
                     <span asp-validation-for="password"></span>
@@ -52,7 +52,7 @@
             <tr>
                 <td colspan="2">
                     <input type="submit" value="Registrieren" />
-                    <input type="reset" value="abbrechen">
+                    <input type="reset" value="Abbrechen">
                 </td>
             </tr>
         </tbody>
@@ -63,3 +63,58 @@
         </tfoot>
     </table>
 </form>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <script>
+        function checkPasswordStrength() {
+            var password = document.getElementById('password').value;
+            var result = zxcvbn(password);
+            var strengthText;
+
+            switch (result.score) {
+                case 0:
+                    strengthText = "Sehr Schwach";
+                    break;
+                case 1:
+                    strengthText = "Schwach";
+                    break;
+                case 2:
+                    strengthText = "Akzeptabel";
+                    break;
+                case 3:
+                    strengthText = "Gut";
+                    break;
+                case 4:
+                    strengthText = "Sehr stark";
+                    break;
+                default:
+                    strengthText = "Unknown";
+            }
+
+            var strengthElement = document.getElementById('password-strength');
+            strengthElement.innerText = "Passwort Stärke: " + strengthText;
+
+            // Optional: Farben ändern basierend auf der Passwortstärke
+            switch (result.score) {
+                case 0:
+                case 1:
+                    strengthElement.style.color = 'red';
+                    break;
+                case 2:
+                    strengthElement.style.color = 'orange';
+                    break;
+                case 3:
+                    strengthElement.style.color = 'yellow';
+                    break;
+                case 4:
+                    strengthElement.style.color = 'green';
+                    break;
+                default:
+                    strengthElement.style.color = 'black';
+            }
+        }
+
+        document.getElementById('password').addEventListener('input', checkPasswordStrength);
+    </script>
+}

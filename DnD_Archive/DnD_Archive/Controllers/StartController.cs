@@ -49,7 +49,7 @@ namespace DnD_Archive.Controllers
             {
                 ModelState.AddModelError("UserName", "Der Benutzername ist mindestens 3 Zeichen lang");
             }
-        
+
 
             return Login(new User()
             {
@@ -60,8 +60,8 @@ namespace DnD_Archive.Controllers
 
         public IActionResult Login(User user)
         {
-        
-        
+
+
             //Die Daten aus der Datenbank holen
             var dbUser = _dbManager.Users.FirstOrDefault(u => u.UserName == user.UserName);
             //Wenn der User nicht existiert
@@ -147,14 +147,34 @@ namespace DnD_Archive.Controllers
                 {
                     ModelState.AddModelError("password", "Das Passwort muss mindestens 8 Zeichen lang sein");
                 }
+                else
+                {
+                    // Beispiel für eine zusätzliche Passwortstärkenvalidierung (z.B. auf Zeichenvielfalt)
+                    if (!HasMixedCase(user.password) || !HasDigits(user.password) || !HasSpecialChars(user.password))
+                    {
+                        ModelState.AddModelError("password", "Das Passwort muss Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten");
+                    }
+                }
+            }
+            // Suchen ob der User schon mit dem Namen existiert
+            if (_dbManager.Users.Any(u => u.UserName == user.UserName))
+            {
+                ModelState.AddModelError("UserName", "Der Benutzername existiert bereits");
+            }
+            // Suchen ob die Email schon existiert
+            if (_dbManager.Users.Any(u => u.email == user.email))
+            {
+                ModelState.AddModelError("email", "Die Email existiert bereits");
             }
             if (ModelState.IsValid)
             {
-                //TODO: Überprüfen ob der User schon existiert
-                //TODO: Überprüfen ob die Email schon existiert
-                //TODO: weiterleitung zur Home-Seite
+                // TODO: weiterleitung zur Home-Seite
                 _dbManager.Users.Add(user);
                 _dbManager.SaveChanges();
+                // Session erstellen und die Parameter speichern
+                HttpContext.Session.SetString("UserName", user.UserName);
+                HttpContext.Session.SetInt32("UserID", user.UserID);
+                HttpContext.Session.SetString("email", user.email);
                 return View("Message", new Message()
                 {
                     Title = "Registrierung",
@@ -171,6 +191,22 @@ namespace DnD_Archive.Controllers
                 });
             }
         }
+
+        private bool HasMixedCase(string password)
+        {
+            return password.Any(char.IsLower) && password.Any(char.IsUpper);
+        }
+
+        private bool HasDigits(string password)
+        {
+            return password.Any(char.IsDigit);
+        }
+
+        private bool HasSpecialChars(string password)
+        {
+            return password.Any(ch => !char.IsLetterOrDigit(ch));
+        }
+
 
 
         public IActionResult Privacy()

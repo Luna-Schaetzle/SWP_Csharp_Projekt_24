@@ -3,8 +3,9 @@
 - [X] Css bei Start und so verbessern
 - [X] Passwort verschlüsseln
 - [X] Regestreien und Login machen
-- [ ] Regestrierung Checken ob der User schon existiert 
-- [ ] Regestrierung Checken ob die Email schon existiert
+- [X] Regestrierung Checken ob der User schon existiert 
+- [X] Regestrierung Checken ob die Email schon existiert
+- [X] Regestrierung schauen ob das Passwort sicher genug ist
 - [ ] User können sich ausloggen
 - [ ] Nach dem Regestrieren sollte man auf das Home geleitet werden und in der Session gespeichert werden 
 - [ ] Nach erfolgreichem Regestrieren Pop up machen
@@ -13,8 +14,11 @@
 - [ ] Die Home seite gestalten
 - [ ] Die Home seite mit den Daten füllen
 - [X] Die User Tabellen erstellen 
-- [ ] User Tabellen mit Testdaten füllen
+- [X] User Tabellen mit Testdaten füllen
 - [X] Registrieren Fertig machen !! Fehlerbeheben
+- [ ] User Kontoübersicht erstellen
 - [ ] User können ihre Daten ändern
 - [ ] User können ihr Passwort ändern
 - [ ] User können sich löschen
+- [ ] Session Löschen beim ausloggen
+- [ ] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
