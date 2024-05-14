@@ -1,8 +1,18 @@
-﻿@{
-   
-}
+﻿@model DnD_Archive.Models.CharacterSheet
+
 
 @{
-    <h1> Sheet Creation</h1>
-    
+    ViewData["Title"] = "CreateSheet";
 }
+
+<form asp-action="Edit" asp-controller="Home" method="post">
+    <input type="hidden" asp-for="SheetId" />
+    <div class="form-group">
+        <label for="content">CharacterSheet Content:</label>
+        <textarea class="form-control" asp-for="Content" rows="10"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Speichern</button>
+</form>
+
+
+

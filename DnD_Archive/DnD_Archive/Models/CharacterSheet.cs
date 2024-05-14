@@ -8,11 +8,9 @@ namespace DnD_Archive.Models
     {
         [Key]
         public int SheetId { get; set; }
-
-        public User User { get; set; }
+        public int UserdId { get; set; }
         public string CharName { get; set; }
-
-        public string dataPdf { get; set; }
+        public string Content { get; set; }
 
         /*
         public CharInfo CharInfo { get; set; }
