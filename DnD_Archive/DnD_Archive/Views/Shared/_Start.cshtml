@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,14 +8,16 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/start.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/dnd_archive_styles.css" asp-append-version="true" />
-    
+    <link rel="stylesheet" href="~/css/cookie-consent.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light shadow-sm mb-4 fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="@Url.Action("Index", "Start")">DnD Archive</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,10 +43,24 @@
             &copy; 2024 - DnD_Archive - <a href="@Url.Action("Privacy", "Start")">Privacy Policy</a>
         </div>
     </footer>
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-consent-content">
+            <img src="~/images/dnd_cookie.png" alt="DnD Cookie" class="cookie-image">
+            <p>Willkommen, tapferer Abenteurer! Wir verwenden Cookies, um sicherzustellen, dass du die beste Erfahrung
+                auf unserer Website hast. Wenn du fortfährst, nehmen wir an, dass du unseren Cookies zustimmst. Möge
+                dein Pfad stets erleuchtet sein!</p>
+            <button id="acceptCookies" class="cookie-consent-button">Akzeptieren</button>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <script src="~/js/cookie-consent.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
-    

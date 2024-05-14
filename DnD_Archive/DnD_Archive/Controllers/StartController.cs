@@ -2,19 +2,24 @@
 using Microsoft.AspNetCore.Mvc;
 using DnD_Archive.Models.DB;
 using System.Web.Helpers;
-
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DnD_Archive.Controllers
 {
     public class StartController : Controller
     {
-
         private readonly DbManager _dbManager;
 
         public StartController(DbManager dbManager)
         {
             _dbManager = dbManager;
         }
+
         public IActionResult Index()
         {
             return View();
@@ -27,81 +32,60 @@ namespace DnD_Archive.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(String UserName, String password)
+        public async Task<IActionResult> Login(string UserName, string password)
         {
-            //UserName Trimen Falls nicht null
-            if (UserName != null)
-            {
-                UserName = UserName.Trim();
-            }
-            //Passwort & UserName schauen ob es null ist
-            if (password == null)
-            {
-                ModelState.AddModelError("password", "Das Passwort darf nicht leer sein");
-            }
-            if (UserName == null)
+            if (string.IsNullOrWhiteSpace(UserName))
             {
                 ModelState.AddModelError("UserName", "Der Benutzername darf nicht leer sein");
             }
-
-            //Schauen das der UserName 3 Zeichen hat
-            if (UserName?.Length < 3)
+            if (string.IsNullOrWhiteSpace(password))
             {
-                ModelState.AddModelError("UserName", "Der Benutzername ist mindestens 3 Zeichen lang");
+                ModelState.AddModelError("password", "Das Passwort darf nicht leer sein");
             }
 
-
-            return Login(new User()
+            if (!ModelState.IsValid)
             {
-                UserName = UserName,
-                password = password
-            });
+                return View();
+            }
+
+            var dbUser = _dbManager.Users.FirstOrDefault(u => u.UserName == UserName);
+            if (dbUser == null || !Crypto.VerifyHashedPassword(dbUser.password, password))
+            {
+                ModelState.AddModelError(string.Empty, "Ungültiger Benutzername oder Passwort");
+                return View();
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, dbUser.UserName),
+                new Claim(ClaimTypes.Email, dbUser.email),
+                new Claim("UserID", dbUser.UserID.ToString())
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                // Optional: Authentifizierungs-Eigenschaften festlegen
+            };
+
+            //Daten in den Cookie schreiben
+            HttpContext.Session.SetString("UserID", dbUser.UserID.ToString());
+            HttpContext.Session.SetString("UserName", dbUser.UserName);
+            HttpContext.Session.SetString("email", dbUser.email);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+
+            return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Login(User user)
+        public async Task<IActionResult> Logout()
         {
-
-
-            //Die Daten aus der Datenbank holen
-            var dbUser = _dbManager.Users.FirstOrDefault(u => u.UserName == user.UserName);
-            //Wenn der User nicht existiert
-            if (dbUser == null)
-            {
-                ModelState.AddModelError("UserName", "Der Benutzername existiert nicht");
-            }
-            //Überprüfen ob das Passwort stimmt
-            else if (!Crypto.VerifyHashedPassword(dbUser.password, user.password))
-            {
-                ModelState.AddModelError("password", "Das Passwort ist falsch");
-            }
-
-            //Wenn es keine Fehler gibt
-            if (ModelState.IsValid)
-            {
-                //Session erstellen und die Parameter speichern
-                HttpContext.Session.SetString("UserName", dbUser.UserName);
-                HttpContext.Session.SetInt32("UserID", dbUser.UserID);
-                HttpContext.Session.SetString("email", dbUser.email);
-                //TODO: Weiterleitung zur Home-Seite
-                return View("Message", new Message()
-                {
-                    Title = "Login",
-                    MessageText = "Sie haben sich erfolgreich eingeloggt!"
-                });
-            }
-            else
-            {
-                return View("Message", new Message()
-                {
-                    Title = "Login",
-                    MessageText = "Es ist ein Fehler aufgetreten!",
-                    Solution = "Bitte Probieren Sie es erneut!"
-                });
-            }
-
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Start");
         }
-
-
 
         [HttpGet]
         public IActionResult Registrieren()
@@ -110,7 +94,7 @@ namespace DnD_Archive.Controllers
         }
 
         [HttpPost]
-        public IActionResult Registrieren(String UserName, String email, String password)
+        public IActionResult Registrieren(string UserName, string email, string password)
         {
             var hashedPassword = Crypto.HashPassword(password);
             User user = new User()
@@ -149,37 +133,29 @@ namespace DnD_Archive.Controllers
                 }
                 else
                 {
-                    // Beispiel für eine zusätzliche Passwortstärkenvalidierung (z.B. auf Zeichenvielfalt)
                     if (!HasMixedCase(user.password) || !HasDigits(user.password) || !HasSpecialChars(user.password))
                     {
                         ModelState.AddModelError("password", "Das Passwort muss Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten");
                     }
                 }
             }
-            // Suchen ob der User schon mit dem Namen existiert
+
             if (_dbManager.Users.Any(u => u.UserName == user.UserName))
             {
                 ModelState.AddModelError("UserName", "Der Benutzername existiert bereits");
             }
-            // Suchen ob die Email schon existiert
+
             if (_dbManager.Users.Any(u => u.email == user.email))
             {
                 ModelState.AddModelError("email", "Die Email existiert bereits");
             }
+
             if (ModelState.IsValid)
             {
-                // TODO: weiterleitung zur Home-Seite
                 _dbManager.Users.Add(user);
                 _dbManager.SaveChanges();
-                // Session erstellen und die Parameter speichern
-                HttpContext.Session.SetString("UserName", user.UserName);
-                HttpContext.Session.SetInt32("UserID", user.UserID);
-                HttpContext.Session.SetString("email", user.email);
-                return View("Message", new Message()
-                {
-                    Title = "Registrierung",
-                    MessageText = "Sie haben sich erfolgreich registriert!"
-                });
+
+                return RedirectToAction("Login", "Start");
             }
             else
             {
@@ -187,7 +163,7 @@ namespace DnD_Archive.Controllers
                 {
                     Title = "Registrierung",
                     MessageText = "Es ist ein Fehler aufgetreten!",
-                    Solution = "Bitte Probieren Sie es erneut!"
+                    Solution = "Bitte probieren Sie es erneut!"
                 });
             }
         }
@@ -206,8 +182,6 @@ namespace DnD_Archive.Controllers
         {
             return password.Any(ch => !char.IsLetterOrDigit(ch));
         }
-
-
 
         public IActionResult Privacy()
         {

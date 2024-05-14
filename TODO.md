@@ -8,9 +8,7 @@
 - [X] Regestrierung schauen ob das Passwort sicher genug ist
 - [ ] User können sich ausloggen
 - [ ] Nach dem Regestrieren sollte man auf das Home geleitet werden und in der Session gespeichert werden 
-- [ ] Nach erfolgreichem Regestrieren Pop up machen
-- [ ] Nach erfolgreichem Login Pop up machen
-- [ ] Wenn man eingelogt ist das sollte man die Home sehen und nicht die Login seite
+- [X] Wenn man eingelogt ist das sollte man die Home sehen und nicht die Login seite
 - [ ] Die Home seite gestalten
 - [ ] Die Home seite mit den Daten füllen
 - [X] Die User Tabellen erstellen 
