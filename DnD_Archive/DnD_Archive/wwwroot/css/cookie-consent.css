@@ -1,8 +1,9 @@
 /* Stil für das gesamte Cookie-Fenster */
 .cookie-consent {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #333;
     color: #fff;
     padding: 20px;
@@ -23,10 +24,11 @@
 
 /* Stil für das Bild im Cookie-Fenster */
 .cookie-image {
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: auto; /* Beibehaltung der proportionalen Höhe */
     margin-bottom: 10px;
 }
+
 
 /* Stil für den Text im Cookie-Fenster */
 .cookie-consent p {

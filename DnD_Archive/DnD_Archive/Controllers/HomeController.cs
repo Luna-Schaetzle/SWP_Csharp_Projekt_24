@@ -81,10 +81,7 @@ namespace DnD_Archive.Controllers
             }
 
 
-            return Edit(new CharacterSheet()
-            {
-                HttpContext.Session.GetString("UserID")
-            });
+            return View();
         }
 
 
