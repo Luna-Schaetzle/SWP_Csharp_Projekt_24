@@ -7,7 +7,7 @@
 - [X] Regestrierung Checken ob die Email schon existiert
 - [X] Regestrierung schauen ob das Passwort sicher genug ist
 - [ ] User können sich ausloggen
-- [ ] Nach dem Regestrieren sollte man auf das Home geleitet werden und in der Session gespeichert werden 
+- [X] Nach dem Regestrieren sollte man auf das Home geleitet werden und in der Session gespeichert werden 
 - [X] Wenn man eingelogt ist das sollte man die Home sehen und nicht die Login seite
 - [ ] Die Home seite gestalten
 - [ ] Die Home seite mit den Daten füllen
@@ -19,4 +19,5 @@
 - [ ] User können ihr Passwort ändern
 - [ ] User können sich löschen
 - [ ] Session Löschen beim ausloggen
-- [ ] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
+- [X] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
+- [ ] Cookies schöner machen das Popup

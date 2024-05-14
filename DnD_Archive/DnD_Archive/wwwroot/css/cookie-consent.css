@@ -1,41 +1,53 @@
+/* Stil für das gesamte Cookie-Fenster */
 .cookie-consent {
     position: fixed;
     bottom: 20px;
-    left: 20px;
     right: 20px;
-    padding: 20px;
-    background-color: #1a1a1a;
+    background-color: #333;
     color: #fff;
-    text-align: center;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
     z-index: 1000;
-}
-
-.cookie-consent-content {
     display: flex;
     align-items: center;
-    justify-content: center;
+}
+
+/* Stil für den Inhalt des Cookie-Fensters */
+.cookie-consent-content {
+    display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
+/* Stil für das Bild im Cookie-Fenster */
 .cookie-image {
-    width: 100px;
-    margin-bottom: 15px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
 }
 
+/* Stil für den Text im Cookie-Fenster */
+.cookie-consent p {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Stil für die Schaltfläche im Cookie-Fenster */
 .cookie-consent-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #28a745;
+    background-color: #ff5722;
     color: #fff;
     border: none;
+    padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
+/* Hover-Effekt für die Schaltfläche */
 .cookie-consent-button:hover {
-    background-color: #218838;
+    background-color: #e64a19;
 }
