@@ -66,8 +66,8 @@ namespace DnD_Archive.Controllers
 
 
             return View();
-                HttpContext.Session.GetString("UserID")
-            });
+               
+            }
            
 
 
