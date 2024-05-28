@@ -34,52 +34,71 @@ namespace DnD_Archive.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string UserName, string password)
         {
+            // Überprüfen, ob der Benutzername leer oder nur aus Leerzeichen besteht
             if (string.IsNullOrWhiteSpace(UserName))
             {
+                // Fehlermeldung zum ModelState hinzufügen, um anzuzeigen, dass der Benutzername nicht leer sein darf
                 ModelState.AddModelError("UserName", "Der Benutzername darf nicht leer sein");
             }
+
+            // Überprüfen, ob das Passwort leer oder nur aus Leerzeichen besteht
             if (string.IsNullOrWhiteSpace(password))
             {
+                // Fehlermeldung zum ModelState hinzufügen, um anzuzeigen, dass das Passwort nicht leer sein darf
                 ModelState.AddModelError("password", "Das Passwort darf nicht leer sein");
             }
 
+            // Überprüfen, ob ModelState Fehler enthält (d.h. ob der Benutzername oder das Passwort leer ist)
             if (!ModelState.IsValid)
             {
+                // Wenn es Fehler gibt, wird die View zurückgegeben, um diese Fehler anzuzeigen
                 return View();
             }
 
+            // Versuchen, den Benutzer in der Datenbank zu finden, der den angegebenen Benutzernamen hat
             var dbUser = _dbManager.Users.FirstOrDefault(u => u.UserName == UserName);
+
+            // Überprüfen, ob der Benutzer nicht existiert oder das Passwort nicht übereinstimmt
             if (dbUser == null || !Crypto.VerifyHashedPassword(dbUser.password, password))
             {
+                // Fehlermeldung zum ModelState hinzufügen, um anzuzeigen, dass der Benutzername oder das Passwort ungültig ist
                 ModelState.AddModelError(string.Empty, "Ungültiger Benutzername oder Passwort");
+                // View zurückgeben, um die Fehlermeldung anzuzeigen
                 return View();
             }
 
+            // Eine Liste von Ansprüchen (Claims) erstellen, die die Identität des Benutzers darstellen
             var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, dbUser.UserName),
-                new Claim(ClaimTypes.Email, dbUser.email),
-                new Claim("UserID", dbUser.UserID.ToString())
-            };
+    {
+        new Claim(ClaimTypes.Name, dbUser.UserName),
+        new Claim(ClaimTypes.Email, dbUser.email),
+        new Claim("UserID", dbUser.UserID.ToString())
+    };
 
+            // Eine ClaimsIdentity erstellen, die die Authentifizierungsschema und die Claims enthält
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            // Authentifizierungseigenschaften erstellen (optional)
             var authProperties = new AuthenticationProperties
             {
-                // Optional: Authentifizierungs-Eigenschaften festlegen
+                // Hier können Sie zusätzliche Eigenschaften festlegen, wie z.B. Ablaufzeit, Persistenz usw.
             };
 
-            //Daten in den Cookie schreiben
+            // Benutzerdaten in die Session schreiben
             HttpContext.Session.SetString("UserID", dbUser.UserID.ToString());
             HttpContext.Session.SetString("UserName", dbUser.UserName);
             HttpContext.Session.SetString("email", dbUser.email);
 
+            // Den Benutzer mit den angegebenen Authentifizierungsschema und Eigenschaften anmelden
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity),
                 authProperties);
 
+            // Den Benutzer zur Index-Aktion im Home-Controller umleiten
             return RedirectToAction("Index", "Home");
         }
+
 
         public async Task<IActionResult> Logout()
         {

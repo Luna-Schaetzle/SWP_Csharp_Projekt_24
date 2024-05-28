@@ -26,6 +26,16 @@ $(() => {
         }
     });
 
+    $("#btnsubmit").on("click", (event) => {
+        $("#UserName").trigger("blur");
+        $("#email").trigger("blur");
+        
+        if (!formOK) {
+            event.preventDefault();
+            formOK = true;
+        }
+    });
+
 
 });
 
