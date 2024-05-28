@@ -21,7 +21,7 @@
                     <input type="text" asp-for="UserName" />
                 </td>
                 <td>
-                    <span asp-validation-for="UserName"></span>
+                    <span asp-validation-for="UserName" id="username-validation"></span>
                 </td>
             </tr>
             <tr>
@@ -34,7 +34,7 @@
                     <input type="email" asp-for="email" />
                 </td>
                 <td>
-                    <span asp-validation-for="email"></span>
+                    <span asp-validation-for="email" id="email-validation"></span>
                 </td>
             </tr>
             <tr>
@@ -65,6 +65,7 @@
 </form>
 
 @section Scripts {
+    <script src="~/js/register_validater.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
     <script>
         function checkPasswordStrength() {
@@ -86,7 +87,7 @@
                     strengthText = "Gut";
                     break;
                 case 4:
-                    strengthText = "Sehr stark";
+                    strengthText = "Sehr stark ";
                     break;
                 default:
                     strengthText = "Unknown";

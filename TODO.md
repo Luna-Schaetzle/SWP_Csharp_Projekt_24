@@ -20,4 +20,9 @@
 - [ ] User können sich löschen
 - [ ] Session Löschen beim ausloggen
 - [X] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
-- [ ] Cookies schöner machen das Popup
+- [X] Cookies schöner machen das Popup
+- [X] JavaScript zum Validieren der Eingabe Clientseitig einbauen
+- [ ] Cookies FIXEN
+- [ ] Create bearbeiten 
+- [ ] Migrate erstellen
+- [ ] EMAIL checker Anpassen

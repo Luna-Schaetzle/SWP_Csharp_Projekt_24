@@ -1,4 +1,6 @@
+// Warten, bis das DOM vollständig geladen ist
 document.addEventListener("DOMContentLoaded", function () {
+    // Elemente im DOM abrufen
     var cookieConsent = document.getElementById('cookieConsent');
     var acceptCookiesButton = document.getElementById('acceptCookies');
 
@@ -28,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Überprüfen, ob der Benutzer die Cookies akzeptiert hat
     if (!getCookie('cookiesAccepted')) {
         cookieConsent.style.display = 'block';
+    } else {
+        cookieConsent.style.display = 'none';
     }
 
     // Wenn der Benutzer die Cookies akzeptiert, das Popup ausblenden und ein Cookie setzen
