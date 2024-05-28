@@ -74,8 +74,8 @@ namespace DnD_Archive.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSheet(string CharContent)
         {
-            //string userId = HttpContext.Session.GetString("UserID");
-            string userId = "1";
+            string userId = HttpContext.Session.GetString("UserID");
+           
             int UID = Int32.Parse(userId);
                 
             CharacterSheet newCharacter = new CharacterSheet(UID, CharContent);
