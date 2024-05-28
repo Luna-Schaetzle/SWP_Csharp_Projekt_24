@@ -1,13 +1,19 @@
 using DnD_Archive.Models;
-using DnD_Archive.Models.DB;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
+using DnD_Archive.Models.DB;
+using System.Web.Helpers;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-
+using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 namespace DnD_Archive.Controllers
 {
-    [Authorize]
+   [Authorize]
     public class HomeController : Controller
     {
         //private readonly ILogger<HomeController> _logger;
@@ -19,7 +25,7 @@ namespace DnD_Archive.Controllers
             _logger = logger;
         }
      */
-        public HomeController(DbManager dbManager)
+        public  HomeController(DbManager dbManager)
         {
             _dbManager = dbManager;
         }
@@ -33,11 +39,8 @@ namespace DnD_Archive.Controllers
         {
             return View();
         }
-
-        public IActionResult CreateSheet()
-        {
-            return View();
-        }
+   
+      
 
         public IActionResult DeleteSheet()
         {
@@ -56,56 +59,35 @@ namespace DnD_Archive.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult Edit(String UserName, String password)
-        {
-            //UserName Trimen Falls nicht null
-            if (UserName != null)
-            {
-                UserName = UserName.Trim();
-            }
-            //Passwort & UserName schauen ob es null ist
-            if (password == null)
-            {
-                ModelState.AddModelError("password", "Das Passwort darf nicht leer sein");
-            }
-            if (UserName == null)
-            {
-                ModelState.AddModelError("UserName", "Der Benutzername darf nicht leer sein");
-            }
 
-            //Schauen das der UserName 3 Zeichen hat
-            if (UserName.Length < 3)
-            {
-                ModelState.AddModelError("UserName", "Der Benutzername ist mindestens 3 Zeichen lang");
-            }
+        [HttpGet]
+        public async Task<IActionResult> CreateSheet()
+        {
 
 
             return View();
-        }
+                HttpContext.Session.GetString("UserID")
+            });
+           
 
-
-        public async Task<IActionResult> Edit(int id)
-        {
-            var content = await _dbManager.CharacterSheets.FindAsync(id);
-            if (content == null)
-            {
-                return NotFound();
-            }
-            return View(content);
-        }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(CharacterSheet content)
+        public async Task<IActionResult> CreateSheet(string CharContent)
         {
+            //string userId = HttpContext.Session.GetString("UserID");
+            string userId = "1";
+            int UID = Int32.Parse(userId);
+                
+            CharacterSheet newCharacter = new CharacterSheet(UID, CharContent);
+            
             if (ModelState.IsValid)
 
             {
-                _dbManager.CharacterSheets.Add(content);
-                await _dbManager.SaveChangesAsync();
-                return RedirectToAction(nameof(OpenSheet), new { id = content.SheetId });
+              _dbManager.CharacterSheets.Add(newCharacter);
+              _dbManager.SaveChanges();
+
             }
-            return View(content);
+            return View();
         }
     }
 }

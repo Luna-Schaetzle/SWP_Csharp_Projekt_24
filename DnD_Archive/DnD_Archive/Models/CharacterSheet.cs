@@ -9,8 +9,7 @@ namespace DnD_Archive.Models
         [Key]
         public int SheetId { get; set; }
         public int UserdId { get; set; }
-        public string CharName { get; set; }
-        public string Content { get; set; }
+        public string CharContent { get; set; }
 
         /*
         public CharInfo CharInfo { get; set; }
@@ -20,10 +19,24 @@ namespace DnD_Archive.Models
 
 
         //Ctor's
+        public CharacterSheet() { }
+
+        public CharacterSheet (int UserId, string content) {
+
+            this.UserdId = UserId;
+            this.CharContent = content;
+        
+        }
+
 
         //ToString()
 
 
 
+
+
     }
+
+    
 }
+

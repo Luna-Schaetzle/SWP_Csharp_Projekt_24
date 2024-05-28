@@ -5,14 +5,28 @@
     ViewData["Title"] = "CreateSheet";
 }
 
-<form asp-action="Edit" asp-controller="Home" method="post">
-    <input type="hidden" asp-for="SheetId" />
+<h2> Characterus Sheetus</h2>
+@using (Html.BeginForm("CreateSheet", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
-        <label for="content">CharacterSheet Content:</label>
-        <textarea class="form-control" asp-for="Content" rows="10"></textarea>
+        <label for="CharContent">Character Sheet Content</label>
+        <textarea id="CharContent" name="CharContent" class="form-control" rows="10" placeholder="Enter your character sheet content here..."></textarea>
+        <span asp-validation-for="CharContent" class="text"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Speichern</button>
-</form>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+
+@section Scripts{
+    @* Js Lokal einbinden *@
+    <script src="~/js/sheetCreation.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
 
 
 
