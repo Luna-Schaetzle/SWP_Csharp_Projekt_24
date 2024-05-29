@@ -1,14 +1,33 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model DnD_Archive.Models.CharacterSheet
+@model IEnumerable<DnD_Archive.Models.CharacterSheet>
 
 @{
-<h1> Your Character Sheets</h1>
-
-<ol>
-
-<li></li>
-<li></li>
-</ol>
+    ViewData["Title"] = "Character Sheets";
 }
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Aktion</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sheet in Model)
+        {
+            <tr>
+                <td>@sheet.Name</td>
+                <td>
+                    <form asp-action="DisplayMarkdown" asp-controller="Home" method="get">
+                        <input type="hidden" name="id" value="@sheet.SheetId" />
+                        <button type="submit" class="btn btn-primary">Öffnen</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

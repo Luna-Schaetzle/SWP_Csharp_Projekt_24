@@ -6,14 +6,25 @@
 }
 
 <h2> Characterus Sheetus</h2>
+
+
+
+
+
 @using (Html.BeginForm("CreateSheet", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
+        <div class="form-group">
+            <label for="Name">Character Sheet Name</label>
+            <textarea id="Name" name="Name" class="form-control" rows="1" placeholder="Enter Character Name"></textarea>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
     <div class="form-group">
         <label for="CharContent">Character Sheet Content</label>
         <textarea id="CharContent" name="CharContent" class="form-control" rows="10" placeholder="Enter your character sheet content here..."></textarea>
-        <span asp-validation-for="CharContent" class="text"></span>
+        <span asp-validation-for="CharContent" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>

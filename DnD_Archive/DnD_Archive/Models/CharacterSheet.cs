@@ -9,6 +9,8 @@ namespace DnD_Archive.Models
         [Key]
         public int SheetId { get; set; }
         public int UserdId { get; set; }
+
+        public string Name { get; set; }
         public string CharContent { get; set; }
 
         /*
@@ -21,11 +23,12 @@ namespace DnD_Archive.Models
         //Ctor's
         public CharacterSheet() { }
 
-        public CharacterSheet (int UserId, string content) {
+        public CharacterSheet (int UserId, string content, string name)
+        {
 
             this.UserdId = UserId;
             this.CharContent = content;
-        
+            this.Name = name;
         }
 
 

@@ -5,12 +5,12 @@ using System.Web.Helpers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Markdig;
 namespace DnD_Archive.Controllers
 {
    [Authorize]
@@ -19,15 +19,18 @@ namespace DnD_Archive.Controllers
         //private readonly ILogger<HomeController> _logger;
         private readonly DbManager _dbManager;
 
+        private readonly MarkdownService _markdownService;
 
-     /*   public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-     */
-        public  HomeController(DbManager dbManager)
+
+            /*   public HomeController(ILogger<HomeController> logger)
+               {
+                   _logger = logger;
+               }
+            */
+            public  HomeController(DbManager dbManager, MarkdownService markdownService)
         {
             _dbManager = dbManager;
+            _markdownService = markdownService;
         }
 
         public IActionResult Index()
@@ -35,6 +38,114 @@ namespace DnD_Archive.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public async Task<IActionResult> OpenSheet()
+        {
+            /*string userId = HttpContext.Session.GetString("UserID");
+            int UID = Int32.Parse(userId);
+
+            //foreach
+
+            var characterSheets = await _dbManager.CharacterSheets.ToListAsync();
+
+            // foreach wo uid richtig is, neue liste
+            return View(characterSheets); */
+
+            string userId = HttpContext.Session.GetString("UserID");
+            int UID = Int32.Parse(userId);
+
+            //foreach
+
+
+
+            var characterSheets = await _dbManager.CharacterSheets.ToListAsync();
+            foreach (CharacterSheet a in from p in _dbManager.CharacterSheets where p.UserdId == UID select p)
+            {
+                characterSheets = _dbManager.CharacterSheets.ToList();
+            }
+
+            // foreach wo uid richtig is, neue liste
+            return View(characterSheets);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> OpenSheet(int id)
+        {
+            string userId = HttpContext.Session.GetString("UserID");
+            int UID = Int32.Parse(userId);
+            id = UID;
+
+            var sheet = await _dbManager.CharacterSheets.FindAsync(id);
+            if (sheet == null)
+            {
+                return NotFound();
+            }
+            return View(sheet);
+        }
+
+
+        /*
+        public IActionResult DeleteSheet()
+        {
+
+            /*  string userId = HttpContext.Session.GetString("UserID");
+              int UID = Int32.Parse(userId);
+
+              //foreach
+
+
+
+              var characterSheets = await _dbManager.CharacterSheets.ToListAsync();
+              foreach (CharacterSheet a in from p in _dbManager.CharacterSheets where p.UserdId == UID select p)
+              {
+                characterSheets = _dbManager.CharacterSheets.ToList(); 
+              }    
+
+            // foreach wo uid richtig is, neue liste
+            return View();
+        }
+ 
+
+
+        public IActionResult DeleteContent()
+        {
+
+            /*
+            var characterSheet = _dbManager.CharacterSheets.FirstOrDefault(c => c.SheetId == id);
+            if (characterSheet == null)
+            {
+                return NotFound("Character sheet not found for the given SheetID.");
+            } else
+            {
+                _dbManager.CharacterSheets.Remove(characterSheet);
+            } 
+
+            return View();
+        } */
+        public IActionResult DisplayMarkdown(int id)
+        {
+            
+
+            // Abrufen des CharacterSheet für die angegebene SheetID
+            var characterSheet = _dbManager.CharacterSheets.FirstOrDefault(c => c.SheetId == id);
+            if (characterSheet == null)
+            {
+                return NotFound("Character sheet not found for the given SheetID.");
+            }
+
+            // Den Markdown-Text aus dem CharContent-Feld des abgerufenen CharacterSheet-Objekts
+            string markdownText = characterSheet.CharContent;
+
+            // Markdown in HTML umwandeln
+            var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
+            var htmlContent = Markdown.ToHtml(markdownText, pipeline);
+
+            // HTML-Inhalt an die View übergeben
+            ViewData["HtmlContent"] = htmlContent;
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -47,10 +158,8 @@ namespace DnD_Archive.Controllers
             return View();
         }
 
-        public IActionResult OpenSheet()
-        {
-            return View();
-        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -69,13 +178,13 @@ namespace DnD_Archive.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateSheet(string CharContent)
+        public async Task<IActionResult> CreateSheet(string Name, string CharContent)
         {
             string userId = HttpContext.Session.GetString("UserID");
             //string userId = "1";
             int UID = Int32.Parse(userId);
                 
-            CharacterSheet newCharacter = new CharacterSheet(UID, CharContent);
+            CharacterSheet newCharacter = new CharacterSheet(UID, CharContent, Name);
             
             if (ModelState.IsValid)
 

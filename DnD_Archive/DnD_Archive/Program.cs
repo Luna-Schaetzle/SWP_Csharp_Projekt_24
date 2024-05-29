@@ -1,3 +1,4 @@
+using DnD_Archive.Models;
 using DnD_Archive.Models.DB;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -9,8 +10,6 @@ namespace DnD_Archive
 {
     public class Program
     {
-
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +37,9 @@ namespace DnD_Archive
                     options.LoginPath = "/Start/Index"; // Pfad zur Anmeldeseite
                 });
 
+            // MarkdownService als Singleton hinzufügen
+            builder.Services.AddSingleton<MarkdownService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -61,13 +63,8 @@ namespace DnD_Archive
                 name: "default",
                 pattern: "{controller=Start}/{action=Index}/{id?}");
 
-            // Fuehrt die app aus!
+            // Führt die app aus!
             app.Run();
-
-
-
         }
     }
-    
-    
 }
