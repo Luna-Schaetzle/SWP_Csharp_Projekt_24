@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,17 +11,65 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DnD_Archive.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            padding-top: 50px; /* Platz für den festen Header */
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            z-index: 1000;
+            height: 30px; /* Kleinere Höhe für den Header */
+        }
+
+        .logo img {
+            max-height: 30px; /* Noch kleinere Logo-Größe */
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile .username {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .user-profile .logout-button {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container-fluid">
-        <header class="row">
-            Kopfbereich
+        <header>
+            <div class="logo">
+                <img src="~/images/logo.webp" alt="Logo" onclick="location.href='/Home/index'">
+            </div>
+            <div class="user-profile">
+                <span class="username" onclick="location.href='/user/edit'">
+                @Context.Request.HttpContext.Session.GetString("UserName")
+                </span>
+                <button class="logout-button btn btn-secondary" onclick="location.href='/Start/Logout'">Abmelden</button>
+            </div>
         </header>
+        <br>
+        <br>
         <main class="row">
             <nav class="col-2">
-               <partial name="Navigation" />
+                <partial name="Navigation" />
             </nav>
             <content class="col-8">
                 @RenderBody()
@@ -26,16 +77,11 @@
             <aside class="col-2">
                 Seitenbereich
             </aside>
-           
         </main>
         <footer class="row">
             Fussbereich
         </footer>
     </div>
-
-
-
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

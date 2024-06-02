@@ -47,3 +47,40 @@ button.accept-policy {
     white-space: nowrap;
     line-height: 60px;
 }
+
+body {
+    padding-top: 50px; /* Platz für den festen Header */
+}
+
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    z-index: 1000;
+    height: 50px; /* Kleinere Höhe für den Header */
+}
+
+.logo img {
+    max-height: 30px; /* Noch kleinere Logo-Größe */
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile .username {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.user-profile .logout-button {
+    margin-left: 10px;
+    cursor: pointer;
+}
