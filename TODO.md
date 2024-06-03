@@ -28,4 +28,4 @@
 - [ ] EMAIL checker Anpassen
 - [ ] Schauen wegen dem Benutzer Bearbeitungszeug!
 - [ ] Darkmode Fixen
-- [ ] Beim Ändern schauen ob der username und Email schon vergeben sind
+- [X] Beim Ändern schauen ob der username und Email schon vergeben sind
