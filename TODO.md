@@ -6,7 +6,7 @@
 - [X] Regestrierung Checken ob der User schon existiert 
 - [X] Regestrierung Checken ob die Email schon existiert
 - [X] Regestrierung schauen ob das Passwort sicher genug ist
-- [ ] User können sich ausloggen
+- [X] User können sich ausloggen
 - [X] Nach dem Regestrieren sollte man auf das Home geleitet werden und in der Session gespeichert werden 
 - [X] Wenn man eingelogt ist das sollte man die Home sehen und nicht die Login seite
 - [ ] Die Home seite gestalten
@@ -18,11 +18,12 @@
 - [ ] User können ihre Daten ändern
 - [ ] User können ihr Passwort ändern
 - [ ] User können sich löschen
-- [ ] Session Löschen beim ausloggen
+- [X] Session Löschen beim ausloggen
 - [X] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
 - [X] Cookies schöner machen das Popup
 - [X] JavaScript zum Validieren der Eingabe Clientseitig einbauen
 - [ ] Cookies FIXEN
 - [ ] Create bearbeiten 
-- [ ] Migrate erstellen
+- [X] Migrate erstellen
 - [ ] EMAIL checker Anpassen
+- [ ] Schauen wegen dem Benutzer Bearbeitungszeug!
