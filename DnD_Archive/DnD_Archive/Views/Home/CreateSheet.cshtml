@@ -1,43 +1,34 @@
 ﻿@model DnD_Archive.Models.CharacterSheet
 
-
 @{
     ViewData["Title"] = "CreateSheet";
+    string defaultCharContent = "# Charaktername: [Name] \n ## Grundlegende Informationen \n- **Rasse:** [Rasse] \n- **Klasse:** [Klasse] \n- **Hintergrund:** [Hintergrund] \n- **Spieler:** [Dein Name] \n\n## Attribute \n| Attribut | Wert | Modifikator | \n| ----------| ------| -------------| \n| Stärke | [Wert] | [+Mod] | \n| Geschicklichkeit | [Wert] | [+Mod] | \n| Konstitution | [Wert] | [+Mod] | \n| Intelligenz | [Wert] | [+Mod] | \n| Weisheit | [Wert] | [+Mod] | \n| Charisma | [Wert] | [+Mod] | \n ## Fähigkeiten \n| Fähigkeit | Modifikator | \n| ---------------------| -------------| \n| Akrobatik | [+Mod] | \n| Geschicklichkeit | [+Mod] | \n| Magie austeilen | [+Mod] | \n| Wahrnehmung | [+Mod] | \n| Überzeugungskraft | [+Mod] | \n| Überleben | [+Mod] | \n\n## Lebenspunkte und Rüstungsklasse \n- **Lebenspunkte:** [LP] \n- **Rüstungsklasse:** [RK] \n\n## Ausrüstung \n- [Gegenstand 1] \n- [Gegenstand 2] \n- [Gegenstand 3] \n... \n\n## Hintergrundgeschichte \n[Hier kannst du die Hintergrundgeschichte deines Charakters eingeben.] \n\n## Notizen \n[Hier kannst du beliebige Notizen oder Anmerkungen hinzufügen.] \n";
 }
 
-<h2> Characterus Sheetus</h2>
-
-
-
-
+<h2>Characterus Sheetus</h2>
 
 @using (Html.BeginForm("CreateSheet", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            <label for="Name">Character Sheet Name</label>
-            <textarea id="Name" name="Name" class="form-control" rows="1" placeholder="Enter Character Name"></textarea>
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
+    <div class="form-group">
+        <label for="Name">Character Sheet Name</label>
+        <textarea id="Name" name="Name" class="form-control" rows="1" placeholder="Enter Character Name"></textarea>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
 
     <div class="form-group">
         <label for="CharContent">Character Sheet Content</label>
-        <textarea id="CharContent" name="CharContent" class="form-control" rows="10" placeholder="Enter your character sheet content here..."></textarea>
+        <textarea id="CharContent" name="CharContent" class="form-control" rows="10" placeholder="Enter your character sheet content here...">@defaultCharContent</textarea>
         <span asp-validation-for="CharContent" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
-
-@section Scripts{
+@section Scripts {
     @* Js Lokal einbinden *@
-    <script src="~/js/sheetCreation.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
-
-
-

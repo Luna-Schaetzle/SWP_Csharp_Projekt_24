@@ -1,5 +1,92 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
 
-<h1>Hier Kommet alles Rein</h1>
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .text-info {
+            width: 70%;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .bubble-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .bubble {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+            .bubble img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hier Kommet alles Rein</h1>
+        <div class="text-info">Enter some text here...</div>
+        <div class="bubble-container">
+            <div class="bubble">
+                <a href="https://example.com">
+                    <img src="https://via.placeholder.com/150" alt="Website 1">
+                </a>
+            </div>
+            <div class="bubble">
+                <a href="https://example.org">
+                    <img src="https://via.placeholder.com/150" alt="Website 2">
+                </a>
+            </div>
+            <div class="bubble">
+                <a href="https://example.net">
+                    <img src="https://via.placeholder.com/150" alt="Website 3">
+                </a>
+            </div>
+            <div class="bubble">
+                <a href="https://example.edu">
+                    <img src="https://via.placeholder.com/150" alt="Website 4">
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
