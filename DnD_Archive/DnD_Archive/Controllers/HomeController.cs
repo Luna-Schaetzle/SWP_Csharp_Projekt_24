@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Markdig;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 namespace DnD_Archive.Controllers
 {
    [Authorize]
@@ -52,19 +53,13 @@ namespace DnD_Archive.Controllers
             // foreach wo uid richtig is, neue liste
             return View(characterSheets); */
 
-            string userId = HttpContext.Session.GetString("UserID");
-            int UID = Int32.Parse(userId);
-
             //foreach
+            var UserID = HttpContext.Session.GetString("UserID");
+            var UserID2 = int.Parse(UserID); //String in Int umwandeln
 
 
-
-            var characterSheets = await _dbManager.CharacterSheets.ToListAsync();
-            foreach (CharacterSheet a in from p in _dbManager.CharacterSheets where p.UserdId == UID select p)
-            {
-                characterSheets = _dbManager.CharacterSheets.ToList();
-            }
-
+            var characterSheets = _dbManager.CharacterSheets.Where(u => u.UserdId == UserID2).ToList(); //Benutzer aus Datenbank holen
+           
             // foreach wo uid richtig is, neue liste
             return View(characterSheets);
         }
@@ -86,44 +81,23 @@ namespace DnD_Archive.Controllers
         }
 
 
-        /*
-        public IActionResult DeleteSheet()
+        public async Task<IActionResult> DeleteSheet(int id)
         {
-
-            /*  string userId = HttpContext.Session.GetString("UserID");
-              int UID = Int32.Parse(userId);
-
-              //foreach
-
-
-
-              var characterSheets = await _dbManager.CharacterSheets.ToListAsync();
-              foreach (CharacterSheet a in from p in _dbManager.CharacterSheets where p.UserdId == UID select p)
-              {
-                characterSheets = _dbManager.CharacterSheets.ToList(); 
-              }    
-
-            // foreach wo uid richtig is, neue liste
-            return View();
-        }
- 
-
-
-        public IActionResult DeleteContent()
-        {
-
-            /*
             var characterSheet = _dbManager.CharacterSheets.FirstOrDefault(c => c.SheetId == id);
+            
             if (characterSheet == null)
             {
                 return NotFound("Character sheet not found for the given SheetID.");
             } else
             {
                 _dbManager.CharacterSheets.Remove(characterSheet);
-            } 
+            }
+
 
             return View();
-        } */
+        }
+
+
         public IActionResult DisplayMarkdown(int id)
         {
             
@@ -151,12 +125,6 @@ namespace DnD_Archive.Controllers
             return View();
         }
    
-      
-
-        public IActionResult DeleteSheet()
-        {
-            return View();
-        }
 
 
 

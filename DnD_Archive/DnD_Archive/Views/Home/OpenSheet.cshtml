@@ -27,6 +27,13 @@
                         <button type="submit" class="btn btn-primary">Öffnen</button>
                     </form>
                 </td>
+                <td>
+                    <form asp-action="DeleteSheet" asp-controller="Home" method="get">
+                        <input type="hidden" name="id" value="@sheet.SheetId" />
+                        <button type="submit" class="btn btn-primary">Öffnen</button>
+                    </form>
+                </td>
+
             </tr>
         }
     </tbody>
