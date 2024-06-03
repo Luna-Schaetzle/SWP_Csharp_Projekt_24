@@ -15,9 +15,9 @@
 - [X] User Tabellen mit Testdaten füllen
 - [X] Registrieren Fertig machen !! Fehlerbeheben
 - [ ] User Kontoübersicht erstellen
-- [ ] User können ihre Daten ändern
+- [X] User können ihre Daten ändern
 - [ ] User können ihr Passwort ändern
-- [ ] User können sich löschen
+- [X] User können sich löschen
 - [X] Session Löschen beim ausloggen
 - [X] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
 - [X] Cookies schöner machen das Popup

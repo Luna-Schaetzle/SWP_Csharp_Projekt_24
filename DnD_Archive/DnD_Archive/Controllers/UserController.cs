@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Markdig;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Runtime.InteropServices;
+using Microsoft.DiaSymReader;
 
 namespace DnD_Archive.Controllers
 {
@@ -45,7 +47,7 @@ namespace DnD_Archive.Controllers
             return View(user);
         }
 
-         [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> edit(String UserName, String email)
         {
             //Schauen ob der Benutzername schon vergeben ist
@@ -65,13 +67,13 @@ namespace DnD_Archive.Controllers
             if (emailCheck != null && emailCheck.email != HttpContext.Session.GetString("email"))
             {
                 //Error View anzeigen
-                return View("Message_2", new Message()  
+                return View("Message_2", new Message()
                 {
                     Title = "Email bereits vergeben",
                     MessageText = "Die Email ist bereits vergeben. Bitte wählen Sie eine andere Email."
 
                 });
-             }
+            }
 
             var UserID = HttpContext.Session.GetString("UserID");
             var UserID2 = int.Parse(UserID);
@@ -89,7 +91,7 @@ namespace DnD_Archive.Controllers
             HttpContext.Session.SetString("email", email);
             return RedirectToAction("overview");
         }
-        
+
 
 
         public IActionResult overview()
@@ -101,16 +103,102 @@ namespace DnD_Archive.Controllers
             return View(user);
         }
 
+
+
+        [HttpGet]
         public IActionResult ChangePassword()
         {
             return View();
         }
 
-
-        public IActionResult Delete()
+        //Change übernehmen und speichern
+        //FIXME: Passwort validieren 
+        //TODO: Schauen warum null Übergeben?
+        [HttpPost]
+        public IActionResult ChangePassword(string password)
         {
-            return View();
+            //Passwort validieren
+            if (password != null)
+            {
+                password = password.Trim();
+                if (password.Length < 8)
+                {
+                    ModelState.AddModelError("password", "Das Passwort muss mindestens 8 Zeichen lang sein");
+                }
+                else if (!HasMixedCase(password) || !HasDigits(password) || !HasSpecialChars(password))
+                {
+                    ModelState.AddModelError("password", "Das Passwort muss Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten");
+                }
+                else
+                {
+                    var UserID = HttpContext.Session.GetString("UserID");
+                    var UserID2 = int.Parse(UserID);
+                    var user = _dbManager.Users.FirstOrDefault(u => u.UserID == UserID2);
+                    user.password = Crypto.HashPassword(password);
+                    _dbManager.Update(user);
+                    _dbManager.SaveChanges();
+                    return RedirectToAction("overview");
+                }
+
+            }
+            return View("Message_2", new Message()
+            {
+                Title = "Fehler",
+                MessageText = "Das Passwort konnte nicht geändert werden. Bitte überprüfen Sie Ihre Eingabe.",
+                Solution = "Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut."
+            });
+
         }
-       
+
+        private bool HasSpecialChars(string password)
+        {
+            if (password.Any(c => !char.IsLetterOrDigit(c)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool HasDigits(string password)
+        {
+            if (password.Any(c => char.IsDigit(c)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool HasMixedCase(string password)
+        {
+            if (password.Any(c => char.IsUpper(c)) && password.Any(c => char.IsLower(c)))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<IActionResult> DeleteAsync()
+        {
+            var UserID = HttpContext.Session.GetString("UserID");
+            var UserID2 = int.Parse(UserID);
+            var user = await _dbManager.Users.FindAsync(UserID2);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Delete the user
+            _dbManager.Users.Remove(user);
+            await _dbManager.SaveChangesAsync();
+
+            // Clear session variables
+            HttpContext.Session.Clear();
+
+            // Sign out the user
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Start");
+        }
+
     }
 }
