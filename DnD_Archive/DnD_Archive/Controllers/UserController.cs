@@ -101,6 +101,16 @@ namespace DnD_Archive.Controllers
             return View(user);
         }
 
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
        
     }
 }
