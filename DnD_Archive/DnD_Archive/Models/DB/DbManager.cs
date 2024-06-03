@@ -20,7 +20,7 @@ namespace DnD_Archive.Models.DB
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // für den Pomelo-MySQL-Treiber
-            string connectionString = "Server=localhost;database=dnd_archive;user=root;password=zwiebel55";
+            string connectionString = "Server=localhost;database=dnd_archive;user=root;password=flo2rian";
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
     }
