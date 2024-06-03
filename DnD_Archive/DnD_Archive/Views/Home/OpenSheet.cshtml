@@ -13,7 +13,8 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>Aktion</th>
+            <th>Open</th>
+            <th>Delete </th>
         </tr>
     </thead>
     <tbody>
@@ -30,7 +31,7 @@
                 <td>
                     <form asp-action="DeleteSheet" asp-controller="Home" method="get">
                         <input type="hidden" name="id" value="@sheet.SheetId" />
-                        <button type="submit" class="btn btn-primary">Öffnen</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
                     </form>
                 </td>
 
