@@ -9,21 +9,21 @@
 - [X] User können sich ausloggen
 - [X] Nach dem Regestrieren sollte man auf das Home geleitet werden und in der Session gespeichert werden 
 - [X] Wenn man eingelogt ist das sollte man die Home sehen und nicht die Login seite
-- [ ] Die Home seite gestalten
+- [X] Die Home seite gestalten
 - [ ] Die Home seite mit den Daten füllen
 - [X] Die User Tabellen erstellen 
 - [X] User Tabellen mit Testdaten füllen
 - [X] Registrieren Fertig machen !! Fehlerbeheben
-- [ ] User Kontoübersicht erstellen
+- [X] User Kontoübersicht erstellen
 - [X] User können ihre Daten ändern
-- [ ] User können ihr Passwort ändern
+- [X] User können ihr Passwort ändern
 - [X] User können sich löschen
 - [X] Session Löschen beim ausloggen
 - [X] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
 - [X] Cookies schöner machen das Popup
 - [X] JavaScript zum Validieren der Eingabe Clientseitig einbauen
 - [ ] Cookies FIXEN
-- [ ] Create bearbeiten 
+- [X] Create bearbeiten 
 - [X] Migrate erstellen
 - [ ] EMAIL checker Anpassen
 - [ ] Schauen wegen dem Benutzer Bearbeitungszeug!

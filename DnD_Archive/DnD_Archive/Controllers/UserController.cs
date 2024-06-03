@@ -111,43 +111,31 @@ namespace DnD_Archive.Controllers
             return View();
         }
 
-        //Change übernehmen und speichern
-        //FIXME: Passwort validieren 
-        //TODO: Schauen warum null Übergeben?
+        //change password
         [HttpPost]
-        public IActionResult ChangePassword(string password)
+        public async Task<IActionResult> ChangePassword(String password)
         {
-            //Passwort validieren
-            if (password != null)
-            {
-                password = password.Trim();
-                if (password.Length < 8)
+            if (password.Length < 8){
+                return View("Message_2", new Message()
                 {
-                    ModelState.AddModelError("password", "Das Passwort muss mindestens 8 Zeichen lang sein");
-                }
-                else if (!HasMixedCase(password) || !HasDigits(password) || !HasSpecialChars(password))
-                {
-                    ModelState.AddModelError("password", "Das Passwort muss Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten");
-                }
-                else
-                {
-                    var UserID = HttpContext.Session.GetString("UserID");
-                    var UserID2 = int.Parse(UserID);
-                    var user = _dbManager.Users.FirstOrDefault(u => u.UserID == UserID2);
-                    user.password = Crypto.HashPassword(password);
-                    _dbManager.Update(user);
-                    _dbManager.SaveChanges();
-                    return RedirectToAction("overview");
-                }
+                    Title = "Passwort nicht sicher",
+                    MessageText = "Das Passwort muss mindestens 8 Zeichen lang sein und Groß- und Kleinbuchstaben, Zahlen und Sonderzeichen enthalten."
 
+                });
             }
-            return View("Message_2", new Message()
+            else{
+            var UserID = HttpContext.Session.GetString("UserID");
+            var UserID2 = int.Parse(UserID);
+            var user = await _dbManager.Users.FindAsync(UserID2);
+            if (user == null)
             {
-                Title = "Fehler",
-                MessageText = "Das Passwort konnte nicht geändert werden. Bitte überprüfen Sie Ihre Eingabe.",
-                Solution = "Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut."
-            });
-
+                return NotFound();
+            }
+            user.password = Crypto.HashPassword(password);
+            _dbManager.Update(user);
+            await _dbManager.SaveChangesAsync();
+            return RedirectToAction("overview");
+            }
         }
 
         private bool HasSpecialChars(string password)
