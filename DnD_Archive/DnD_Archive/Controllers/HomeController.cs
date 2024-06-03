@@ -93,6 +93,8 @@ namespace DnD_Archive.Controllers
                 _dbManager.CharacterSheets.Remove(characterSheet);
             }
 
+            _dbManager.SaveChangesAsync();
+
 
             return View();
         }
