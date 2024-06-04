@@ -4,6 +4,36 @@
 
 <h2>Display Markdown</h2>
 
-<div>
+<div id="markdown-content">
     @Html.Raw(ViewData["HtmlContent"])
 </div>
+
+
+<!-- Download von Markdown und PDF -->
+<!--button onclick="downloadMarkdown()">Download Markdown</button>
+<button onclick="convertHTMLtoPDF()">Download as PDF</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    function downloadMarkdown() {
+        var markdownContent = document.getElementById("markdown-content").innerText;
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(markdownContent));
+        element.setAttribute('download', 'markdown.md');
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    function convertHTMLtoPDF() {
+        var pdf = new jsPDF('p', 'pt', 'a4');
+        var doc = new jsPDF('p', 'pt', 'a4');
+        doc.fromHTML(htmlElement, 15, 15, {
+            'width': 170,
+            'elementHandlers': specialElementHandlers
+        });
+        doc.save('example.pdf');
+    }
+</script-->

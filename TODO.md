@@ -30,4 +30,6 @@
 - [ ] Darkmode Fixen
 - [X] Beim Ändern schauen ob der username und Email schon vergeben sind
 - [X] Head in Partial auslagern
+- [ ] PDF erstellen anschauen aus Mardown
+- [ ] 
 - [ ] Spellist 

@@ -104,7 +104,7 @@ namespace DnD_Archive.Controllers
         {
             
 
-            // Abrufen des CharacterSheet für die angegebene SheetID
+            // Abrufen des CharacterSheet fï¿½r die angegebene SheetID
             var characterSheet = _dbManager.CharacterSheets.FirstOrDefault(c => c.SheetId == id);
             if (characterSheet == null)
             {
@@ -118,7 +118,7 @@ namespace DnD_Archive.Controllers
             var pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
             var htmlContent = Markdown.ToHtml(markdownText, pipeline);
 
-            // HTML-Inhalt an die View übergeben
+            // HTML-Inhalt an die View ï¿½bergeben
             ViewData["HtmlContent"] = htmlContent;
             return View();
         }

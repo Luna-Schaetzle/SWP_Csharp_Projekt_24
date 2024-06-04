@@ -1,0 +1,33 @@
+@model DnD_Archive.Models.Spells
+
+@{
+    ViewData["Title"] = "Create own Spell";
+}
+
+<h2>Create own Spell</h2>
+
+<form asp-controller="Spell" asp-action="Create" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">Create own Spell</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Name: <span style="color:red">*</span>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <input type="submit" value="Create" />
+                    <input type="reset" value="Cancel">
+                </td>
+            </tr>
+    </table>
+</form>
+
+
