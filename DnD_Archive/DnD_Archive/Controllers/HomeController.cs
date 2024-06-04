@@ -126,7 +126,18 @@ namespace DnD_Archive.Controllers
         {
             return View();
         }
-   
+
+        public IActionResult ForumPage()
+        {
+            return View();  
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> CreatePost()
+        {
+            return View();
+        }
 
 
 
