@@ -1,6 +1,6 @@
 $(() => {
 
-    let formOK = false;
+    let formOK = true;
 
     $("#UserName").on("blur", function () {
         let username = $("#UserName").val();
@@ -26,14 +26,31 @@ $(() => {
         }
     });
 
+    $("#password").on("blur", function () {
+        let password = $("#password").val();
+
+        if (password.length < 8) {
+            $("#password-validation").text("Das Passwort muss mindestens 8 Zeichen lang sein.");
+            formOK = false;
+        }
+        else {
+            $("#password-validation").text("");
+        }
+    });
+
     $("#btnsubmit").on("click", (event) => {
         $("#UserName").trigger("blur");
         $("#email").trigger("blur");
+        $("#password").trigger("blur");
         
         if (!formOK) {
             event.preventDefault();
             formOK = true;
         }
+        else{
+            $("#register-form").submit();
+        }
+        
     });
 
 
@@ -52,22 +69,11 @@ function usernameValidation(username) {
 
 function emailValidation(email) {
 
-    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-    if (email.value.match(validRegex)) {
-  
-      //alert("Valid email address!");
-      //document.form1.text1.focus();
-      return true;
-  
+    var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (re.test(email)) {
+        return true;
     } else {
-  
-      //alert("Invalid email address!");
-  
-      //document.form1.text1.focus();
-  
-      return false;
-  
+        return false;
     }
 }
 

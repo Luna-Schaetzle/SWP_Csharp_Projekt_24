@@ -5,7 +5,7 @@
     ViewData["Title"] = "Registrieren";
 }
 
-<form asp-controller="Start" asp-action="Registrieren" method="post">
+<form asp-controller="Start" asp-action="Registrieren" method="post" id="register-form">
     <table class="form-table">
         <thead>
             <tr>
@@ -46,7 +46,7 @@
                     <div id="password-strength" style="margin-top: 5px; color: green;"></div>
                 </td>
                 <td>
-                    <span asp-validation-for="password"></span>
+                    <span asp-validation-for="password" id="password-validation"></span>
                 </td>
             </tr>
             <tr>
@@ -66,7 +66,7 @@
 
 @section Scripts {
     //FIXME: der E-Mail-Validator funktioniert nicht richtig
-    <!--script src="~/js/register_validater.js"></script-->
+    <script src="~/js/register_validater.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
     <script>
         function checkPasswordStrength() {

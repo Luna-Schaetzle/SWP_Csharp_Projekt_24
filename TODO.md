@@ -10,7 +10,7 @@
 - [X] Nach dem Regestrieren sollte man auf das Home geleitet werden und in der Session gespeichert werden 
 - [X] Wenn man eingelogt ist das sollte man die Home sehen und nicht die Login seite
 - [X] Die Home seite gestalten
-- [ ] Die Home seite mit den Daten füllen
+- [X] Die Home seite mit den Daten füllen
 - [X] Die User Tabellen erstellen 
 - [X] User Tabellen mit Testdaten füllen
 - [X] Registrieren Fertig machen !! Fehlerbeheben
@@ -25,8 +25,9 @@
 - [ ] Cookies FIXEN
 - [X] Create bearbeiten 
 - [X] Migrate erstellen
-- [ ] EMAIL checker Anpassen
-- [ ] Schauen wegen dem Benutzer Bearbeitungszeug!
+- [X] EMAIL checker Anpassen
+- [X] Schauen wegen dem Benutzer Bearbeitungszeug!
 - [ ] Darkmode Fixen
 - [X] Beim Ändern schauen ob der username und Email schon vergeben sind
-- [ ] Head in Partial auslagern
+- [X] Head in Partial auslagern
+- [ ] Spellist 

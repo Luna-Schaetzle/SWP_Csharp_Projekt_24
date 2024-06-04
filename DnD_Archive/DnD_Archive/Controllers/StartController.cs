@@ -34,6 +34,8 @@ namespace DnD_Archive.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string UserName, string password)
         {
+            try
+            {
             // Überprüfen, ob der Benutzername leer oder nur aus Leerzeichen besteht
             if (string.IsNullOrWhiteSpace(UserName))
             {
@@ -69,11 +71,11 @@ namespace DnD_Archive.Controllers
 
             // Eine Liste von Ansprüchen (Claims) erstellen, die die Identität des Benutzers darstellen
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, dbUser.UserName),
-        new Claim(ClaimTypes.Email, dbUser.email),
-        new Claim("UserID", dbUser.UserID.ToString())
-    };
+            {
+                new Claim(ClaimTypes.Name, dbUser.UserName),
+                new Claim(ClaimTypes.Email, dbUser.email),
+                new Claim("UserID", dbUser.UserID.ToString())
+            };
 
             // Eine ClaimsIdentity erstellen, die die Authentifizierungsschema und die Claims enthält
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -97,6 +99,13 @@ namespace DnD_Archive.Controllers
 
             // Den Benutzer zur Index-Aktion im Home-Controller umleiten
             return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+            // Handle the exception here, e.g. log the error or display a generic error message
+            ModelState.AddModelError(string.Empty, "Ein Fehler ist aufgetreten");
+            return View();
+            }
         }
 
 
