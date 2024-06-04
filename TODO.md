@@ -29,3 +29,4 @@
 - [ ] Schauen wegen dem Benutzer Bearbeitungszeug!
 - [ ] Darkmode Fixen
 - [X] Beim Ändern schauen ob der username und Email schon vergeben sind
+- [ ] Head in Partial auslagern
