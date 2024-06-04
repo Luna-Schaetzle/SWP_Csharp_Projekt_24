@@ -14,6 +14,7 @@ namespace DnD_Archive.Models.DB
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Spells> SpellList { get; set; }
 
+        public DbSet<ForumPost> ForumPosts { get; set; }
 
 
 
