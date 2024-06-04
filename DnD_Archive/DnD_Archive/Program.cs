@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using DnD_Archive.Hubs;
 using System;
 
 namespace DnD_Archive
@@ -22,6 +23,8 @@ namespace DnD_Archive
 
             // Session hinzufügen
             builder.Services.AddDistributedMemoryCache();
+
+            builder.Services.AddSignalR();
 
             builder.Services.AddSession(options =>
             {
@@ -58,6 +61,8 @@ namespace DnD_Archive
             app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.MapHub<ChatHub>("/chatHub");
 
             app.MapControllerRoute(
                 name: "default",

@@ -39,6 +39,10 @@ namespace DnD_Archive.Controllers
             return View();
         }
 
+        public IActionResult SignalRChat()
+        {
+            return View();
+        }
 
         [HttpGet]
         public async Task<IActionResult> OpenSheet()
@@ -123,18 +127,6 @@ namespace DnD_Archive.Controllers
             return View();
         }
         public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult ForumPage()
-        {
-            return View();  
-        }
-
-
-        [HttpGet]
-        public async Task<IActionResult> CreatePost()
         {
             return View();
         }

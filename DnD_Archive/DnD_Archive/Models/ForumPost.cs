@@ -21,7 +21,7 @@ namespace DnD_Archive.Models
         //Ctor's
         public ForumPost() { }
 
-        public ForumPost(int UserId, string content, int PostId)
+        public ForumPost(int UserId, string content)
         {
 
             this.UserdId = UserId;
