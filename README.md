@@ -43,7 +43,13 @@ Diese Website dient der Verwaltung von Dungeons & Dragons Charakterbögen und bi
 
 ### Umgesetzte Features
 
-- None
+- Multi-User Zugang
+- Registrierung und Login
+- Benutzerkontoverwaltung
+- Session-Verwaltung
+- Datenbankanbindung
+- Charaktererstellung und bearbeitung mittells Markdown
+- Links zu D&D Wikis
 
 ## TODOs
 

@@ -31,5 +31,8 @@
 - [X] Beim Ändern schauen ob der username und Email schon vergeben sind
 - [X] Head in Partial auslagern
 - [ ] PDF erstellen anschauen aus Mardown
-- [ ] 
 - [ ] Spellist 
+- [ ] Inventar Verwaltung 
+- [ ] Battle Verwaltung
+- [ ] Web API 
+- [ ] Chatbot zur erstellung der Charaktere
