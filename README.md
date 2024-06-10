@@ -40,6 +40,15 @@ Diese Website dient der Verwaltung von Dungeons & Dragons Charakterbögen und bi
 - **Battle Koordinator**: Ein Tool zur Verwaltung und Durchführung von Kampfszenarien, inklusive Initiative Tracking und Gesundheitsmanagement.
 
 - **Multi-User Zugang**: Unterstützung für mehrere Benutzer mit individuellen Zugängen und Sichtbarkeiten.
+- **Forum**: Ein Diskussionsforum für Spieler und Spielleiter, um sich auszutauschen und Fragen zu stellen.
+- **Live Chat**: Ein Chat-Tool für Benutzer, um in Echtzeit miteinander zu kommunizieren.
+- **Integration einer eigenen API**: Eine eigene RESTful API, die es Benutzern ermöglicht, auf die Datenbank zuzugreifen und eigene Anwendungen zu erstellen.
+- **Dark Mode**: Eine dunkle Benutzeroberfläche für Benutzer, die in dunklen Umgebungen spielen oder einfach nur dunkle Designs bevorzugen.
+- **PDF Export**: Die Möglichkeit, Charakterbögen und andere Daten als PDF-Dateien zu exportieren und herunterzuladen.
+- **Spell List**: Eine Liste von Zaubern und Fähigkeiten, die Benutzer durchsuchen und filtern können.
+- **Verwengung einer Fremd API**: Einbindung einer externen API, um zusätzliche Daten und Ressourcen für Benutzer bereitzustellen.
+- **EXP Tracker**: Ein Tool zur Verfolgung des Fortschritts und der Erfahrungspunkte von Charakteren.
+- **Würfel-Roller** oder **Würfel-API**: Ein Tool zum Rollen von Würfeln und Generieren von Zufallszahlen für das Spiel.
 
 ### Umgesetzte Features
 
@@ -50,6 +59,9 @@ Diese Website dient der Verwaltung von Dungeons & Dragons Charakterbögen und bi
 - Datenbankanbindung
 - Charaktererstellung und bearbeitung mittells Markdown
 - Links zu D&D Wikis
+- Froum mit Live Chat
+- eigene API zum Würfeln (https://localhost:7095/api/dice/roll/[sides])
+- Verwendung der eigenen API auf Roll Dice Seite
 
 ## TODOs
 

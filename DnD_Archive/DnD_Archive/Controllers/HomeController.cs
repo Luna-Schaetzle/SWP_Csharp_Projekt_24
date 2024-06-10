@@ -14,7 +14,7 @@ using Markdig;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 namespace DnD_Archive.Controllers
 {
-   [Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         //private readonly ILogger<HomeController> _logger;
@@ -23,12 +23,12 @@ namespace DnD_Archive.Controllers
         private readonly MarkdownService _markdownService;
 
 
-            /*   public HomeController(ILogger<HomeController> logger)
-               {
-                   _logger = logger;
-               }
-            */
-            public  HomeController(DbManager dbManager, MarkdownService markdownService)
+        /*   public HomeController(ILogger<HomeController> logger)
+           {
+               _logger = logger;
+           }
+        */
+        public HomeController(DbManager dbManager, MarkdownService markdownService)
         {
             _dbManager = dbManager;
             _markdownService = markdownService;
@@ -63,7 +63,7 @@ namespace DnD_Archive.Controllers
 
 
             var characterSheets = _dbManager.CharacterSheets.Where(u => u.UserdId == UserID2).ToList(); //Benutzer aus Datenbank holen
-           
+
             // foreach wo uid richtig is, neue liste
             return View(characterSheets);
         }
@@ -88,11 +88,12 @@ namespace DnD_Archive.Controllers
         public async Task<IActionResult> DeleteSheet(int id)
         {
             var characterSheet = _dbManager.CharacterSheets.FirstOrDefault(c => c.SheetId == id);
-            
+
             if (characterSheet == null)
             {
                 return NotFound("Character sheet not found for the given SheetID.");
-            } else
+            }
+            else
             {
                 _dbManager.CharacterSheets.Remove(characterSheet);
             }
@@ -106,7 +107,7 @@ namespace DnD_Archive.Controllers
 
         public IActionResult DisplayMarkdown(int id)
         {
-            
+
 
             // Abrufen des CharacterSheet f�r die angegebene SheetID
             var characterSheet = _dbManager.CharacterSheets.FirstOrDefault(c => c.SheetId == id);
@@ -132,6 +133,12 @@ namespace DnD_Archive.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult RollDice()
+        {
+            return View();
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -147,7 +154,7 @@ namespace DnD_Archive.Controllers
         {
             return View();
         }
-           
+
 
 
         [HttpPost]
@@ -156,14 +163,14 @@ namespace DnD_Archive.Controllers
             string userId = HttpContext.Session.GetString("UserID");
             //string userId = "1";
             int UID = Int32.Parse(userId);
-                
+
             CharacterSheet newCharacter = new CharacterSheet(UID, CharContent, Name);
-            
+
             if (ModelState.IsValid)
 
             {
-              _dbManager.CharacterSheets.Add(newCharacter);
-              _dbManager.SaveChanges();
+                _dbManager.CharacterSheets.Add(newCharacter);
+                _dbManager.SaveChanges();
 
             }
             return View();
