@@ -12,6 +12,12 @@ using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Markdig;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using System.Web;
+using System.Globalization;
+using System.Threading;
+using Microsoft.AspNetCore.Localization;
+
+
 namespace DnD_Archive.Controllers
 {
     [Authorize]
@@ -175,5 +181,19 @@ namespace DnD_Archive.Controllers
             }
             return View();
         }
+
+
+        //Sprache wechseln 
+
+        public IActionResult ChangeLanguage(string culture)
+    {
+        Response.Cookies.Append(
+            CookieRequestCultureProvider.DefaultCookieName,
+            CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+            new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+        );
+
+        return RedirectToAction(nameof(Index));
+    }
     }
 }

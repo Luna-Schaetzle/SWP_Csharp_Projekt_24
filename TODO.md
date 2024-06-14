@@ -22,17 +22,15 @@
 - [X] Home Verzeichnis und alle anderen Verzeichnisse nur für eingeloggte User zugänglich machen
 - [X] Cookies schöner machen das Popup
 - [X] JavaScript zum Validieren der Eingabe Clientseitig einbauen
-- [ ] Cookies FIXEN
 - [X] Create bearbeiten 
 - [X] Migrate erstellen
 - [X] EMAIL checker Anpassen
 - [X] Schauen wegen dem Benutzer Bearbeitungszeug!
-- [ ] Darkmode Fixen
 - [X] Beim Ändern schauen ob der username und Email schon vergeben sind
 - [X] Head in Partial auslagern
-- [ ] PDF erstellen anschauen aus Mardown
 - [ ] Spellist 
 - [ ] Inventar Verwaltung 
 - [ ] Battle Verwaltung
 - [ ] Web API 
-- [ ] Chatbot zur erstellung der Charaktere
+- [ ] Mehrsprachigkeit 
+- [ ] PDF erstellen anschauen aus Mardown
